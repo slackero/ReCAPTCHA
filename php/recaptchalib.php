@@ -70,14 +70,11 @@ class ReCaptcha
      */
     private function _encodeQS($data)
     {
-        $req = "";
+        $param = array();
         foreach ($data as $key => $value) {
-            $req .= $key . '=' . urlencode(stripslashes($value)) . '&';
+            $param[] = $key . '=' . rawurlencode(stripslashes(trim($value)));
         }
-
-        // Cut the last '&'
-        $req=substr($req, 0, strlen($req)-1);
-        return $req;
+        return implode('&', $param);
     }
 
     /**
@@ -90,8 +87,8 @@ class ReCaptcha
      */
     private function _submitHTTPGet($path, $data)
     {
-        $req = $this->_encodeQS($data);
-        $response = file_get_contents($path . $req);
+        $query = $this->_encodeQS($data);
+        $response = file_get_contents($path . $query);
         return $response;
     }
 
