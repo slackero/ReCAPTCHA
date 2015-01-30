@@ -107,7 +107,7 @@ class ReCaptcha
     public function verifyResponse($remoteIp, $response)
     {
         // Discard empty solution submissions
-        if ($response == null || strlen($response) == 0) {
+        if (empty($response)) {
             $recaptchaResponse = new ReCaptchaResponse();
             $recaptchaResponse->success = false;
             $recaptchaResponse->errorCodes = 'missing-input';
