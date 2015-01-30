@@ -42,8 +42,7 @@ class ReCaptchaResponse
 class ReCaptcha
 {
     private static $_signupUrl = "https://www.google.com/recaptcha/admin";
-    private static $_siteVerifyUrl =
-        "https://www.google.com/recaptcha/api/siteverify?";
+    private static $_siteVerifyUrl = "https://www.google.com/recaptcha/api/siteverify?";
     private $_secret;
     private static $_version = "php_1.0";
 
@@ -54,9 +53,8 @@ class ReCaptcha
      */
     function ReCaptcha($secret)
     {
-        if ($secret == null || $secret == "") {
-            die("To use reCAPTCHA you must get an API key from <a href='"
-                . self::$_signupUrl . "'>" . self::$_signupUrl . "</a>");
+        if (empty($secret)) {
+            die("To use reCAPTCHA you must get an API key from <a href='" . self::$_signupUrl . "'>" . self::$_signupUrl . "</a>");
         }
         $this->_secret=$secret;
     }
